@@ -1,1 +1,385 @@
-index.html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>James Koero: machine learning you can check</title>
+<meta name="description" content="James Koero is an ML engineer in Kisumu, Kenya. He builds flood-risk, salary and credit models end to end, tests them against a protocol written first, and publishes where they fall short.">
+<meta name="author" content="James Koero">
+<meta property="og:type" content="website">
+<meta property="og:title" content="James Koero: machine learning you can check">
+<meta property="og:description" content="ML engineer in Kisumu, Kenya. Flood risk, salary bands, credit risk and SaaS, built end to end and tested honestly.">
+<meta property="og:url" content="https://jameskoero.dev">
+<meta property="og:image" content="https://jameskoero.dev/share-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2339F5">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"James Koero","jobTitle":"Machine Learning Engineer","url":"https://jameskoero.dev","email":"mailto:jmskoero@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Kisumu","addressCountry":"KE"},"alumniOf":"Moi University","knowsAbout":["Machine learning","MLOps","Flood risk modelling","FastAPI","Python"],"sameAs":["https://github.com/jameskoero","https://linkedin.com/in/jameskoero","https://orcid.org/0009-0001-8314-2682"]}
+</script>
+<style>
+:root{
+  --cobalt:#2339F5; --navy:#0C1445; --signal:#FFD84A; --water:#9ED8FF;
+  --bg:#F2F4FA; --ink:#0C1445; --muted:#4B5478; --line:#D3D9EA; --panel:#FFFFFF;
+  --link:#2339F5; --chip:#E4E8F7;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#080D2B; --ink:#EDF0FF; --muted:#A5AEDA; --line:#222C66; --panel:#0E1540;
+    --link:#9BA8FF; --chip:#16205A; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#080D2B; --ink:#EDF0FF; --muted:#A5AEDA; --line:#222C66; --panel:#0E1540;
+  --link:#9BA8FF; --chip:#16205A; color-scheme:dark;
+}
+*{box-sizing:border-box}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:calc(16px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Instrument Sans",system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--cobalt);z-index:30}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.display{font-family:"Special Gothic Expanded One","Instrument Sans",system-ui,sans-serif;font-weight:400}
+
+/* hero */
+.hero{background:var(--cobalt);color:#fff;padding:18px 0 0}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:44px}
+.bar .me{font-weight:600;color:#fff;text-decoration:none}
+.bar nav{display:flex;gap:18px;align-items:center}
+.bar nav a{color:#fff;text-decoration:none;font-size:15px}
+.bar nav a:hover{text-decoration:underline}
+.theme{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6);border-radius:999px;padding:6px 12px;font:500 14px "Instrument Sans",sans-serif;cursor:pointer}
+h1{font-size:clamp(30px,6.6vw,66px);line-height:1.04;margin:0 0 18px;max-width:17ch;letter-spacing:-.01em}
+.hero .lead{font-size:clamp(17px,2.2vw,20px);max-width:58ch;margin:0 0 22px;color:#E6EAFF}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-block;padding:13px 20px;border-radius:999px;font-weight:600;text-decoration:none;font-size:16px;font-family:inherit;cursor:pointer;border:2px solid #fff;color:#fff;background:transparent}
+.btn.solid{background:var(--signal);border-color:var(--signal);color:var(--navy)}
+.status{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.14);border-radius:999px;padding:7px 13px;font-size:14px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--signal)}
+.field{margin-top:36px}
+.field svg{display:block;width:100%;height:auto}
+.control{background:var(--navy);padding:16px 0 20px}
+.control .wrap{display:grid;gap:10px}
+.control label{font-weight:600;font-size:15px}
+.control p{margin:0;color:#C9D1FF;font-size:15px;max-width:70ch}
+.slide{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+input[type=range]{width:100%;accent-color:var(--signal);height:32px;margin:0}
+.read{font-weight:600;font-variant-numeric:tabular-nums;color:var(--signal);min-width:11ch;text-align:right}
+
+/* sections */
+section{padding:60px 0 8px}
+h2{font-size:clamp(22px,3.6vw,32px);line-height:1.15;margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 26px;max-width:60ch}
+
+/* work ledger */
+.ledger{border-bottom:1px solid var(--line)}
+.job{border-top:1px solid var(--line)}
+.job summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1.7fr) minmax(0,.9fr) 24px;gap:6px 22px;align-items:baseline;padding:22px 0}
+.job summary::-webkit-details-marker{display:none}
+.name{font-family:"Special Gothic Expanded One","Instrument Sans",sans-serif;font-size:clamp(19px,2.6vw,24px);line-height:1.15}
+.one{color:var(--muted)}
+.res{font-weight:600;text-align:right}
+.tg{position:relative;width:18px;height:18px;align-self:center}
+.tg::before,.tg::after{content:"";position:absolute;background:var(--ink);left:0;right:0;top:8px;height:2px;transition:transform .25s}
+.tg::after{transform:rotate(90deg)}
+.job[open] .tg::after{transform:rotate(0)}
+.job .body{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:24px 40px;padding:2px 0 30px}
+.body ul{margin:0;padding-left:18px}
+.body li{margin:0 0 8px}
+.why{margin:0 0 16px;padding-left:14px;border-left:4px solid var(--signal);color:var(--muted)}
+.links{display:flex;flex-wrap:wrap;gap:8px 18px}
+.links a{font-weight:600}
+.forest{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px;margin-top:6px}
+.forest h3{font-size:15px;margin:0 0 12px;font-weight:600}
+.fr{margin:0 0 14px}
+.fr .t{font-size:14px;color:var(--muted);margin:0 0 2px}
+.fr .v{font-size:14px;font-weight:600;font-variant-numeric:tabular-nums;margin:2px 0 0}
+.track{position:relative;height:24px}
+.track .zero{position:absolute;top:0;bottom:0;width:0;border-left:2px dashed var(--muted);opacity:.7}
+.track .bar2{position:absolute;top:10px;height:4px;border-radius:2px;background:var(--cobalt)}
+.track .pt{position:absolute;top:5px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--cobalt);border:2px solid var(--panel)}
+.fr.off .bar2{background:var(--muted)}
+.fr.off .pt{background:var(--panel);border-color:var(--muted)}
+.axis{position:relative;height:18px;margin-top:2px}
+.axis span{position:absolute;transform:translateX(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.fnote{font-size:13px;color:var(--muted);margin:8px 0 0}
+
+/* method */
+.method{display:grid;gap:26px 48px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.method h3{font-family:"Special Gothic Expanded One","Instrument Sans",sans-serif;font-weight:400;font-size:19px;margin:0 0 6px}
+.method p{margin:0;color:var(--muted)}
+
+/* path */
+.path{display:grid;grid-template-columns:minmax(96px,150px) 1fr;gap:0 24px;margin:0}
+.path dt{font-weight:600;padding:14px 0;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
+.path dd{margin:0;padding:14px 0;border-top:1px solid var(--line)}
+.path dt:last-of-type,.path dd:last-of-type{border-bottom:1px solid var(--line)}
+
+/* records and tools */
+.rec{list-style:none;margin:0;padding:0}
+.rec li{padding:14px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px}
+.rec li:last-child{border-bottom:1px solid var(--line)}
+.rec b{font-weight:600}
+.rec span{color:var(--muted)}
+.tools{display:grid;gap:10px 40px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:0}
+.tools div{padding:12px 0;border-top:1px solid var(--line)}
+.tools dt{font-weight:600}
+.tools dd{margin:0;color:var(--muted)}
+
+/* contact */
+.contact{background:var(--cobalt);color:#fff;margin-top:72px;padding:56px 0 40px}
+.contact h2{color:#fff}
+.mail{display:block;font-family:"Special Gothic Expanded One","Instrument Sans",sans-serif;font-size:clamp(20px,5.2vw,48px);line-height:1.15;color:#fff;text-decoration:none;margin:10px 0 22px;overflow-wrap:anywhere}
+.mail:hover{text-decoration:underline}
+.contact a{color:#fff}
+.sm{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px}
+.sm a{font-weight:600}
+footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
+
+@media (max-width:720px){
+  .job summary{grid-template-columns:minmax(0,1fr) 24px}
+  .job .one{grid-column:1/2}
+  .job .res{grid-column:1/2;text-align:left;color:var(--link)}
+  .job .tg{grid-column:2;grid-row:1}
+  .job .body{grid-template-columns:1fr}
+  .slide{grid-template-columns:1fr}
+  .read{text-align:left}
+  .bar nav a.hide-s{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tg::before,.tg::after{transition:none}}
+@media print{.control,.theme,body::before{display:none}.hero,.contact{background:#fff;color:#000}.hero .lead,.contact a,.mail{color:#000}}
+</style>
+</head>
+<body>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="bar">
+      <a class="me" href="#top">James Koero</a>
+      <nav aria-label="Sections">
+        <a href="#work">Work</a><a class="hide-s" href="#method">Method</a><a class="hide-s" href="#path">Path</a><a href="#contact">Contact</a>
+        <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme">Theme</button>
+      </nav>
+    </div>
+    <h1 class="display">Machine learning you can check.</h1>
+    <p class="lead">I’m an ML engineer in Kisumu, Kenya. I build flood-risk, salary and credit models end to end, test them against a protocol I write first, and publish where they fall short.</p>
+    <div class="row">
+      <a class="btn solid" href="#work">See the work</a>
+      <a class="btn" href="mailto:jmskoero@gmail.com">Email James</a>
+      <span class="status"><i></i>Open to remote ML engineering roles</span>
+    </div>
+    <div class="field">
+      <svg id="field" viewBox="0 0 1000 330" preserveAspectRatio="none" role="img" aria-label="Illustrative ground profile of a river valley with a water level that rises and falls with the slider below">
+        <polygon id="ridge" fill="rgba(255,255,255,.10)"/>
+        <rect id="water" x="0" width="1000" fill="#9ED8FF"/>
+        <line id="wline" x1="0" x2="1000" stroke="#fff" stroke-opacity=".55" stroke-dasharray="6 8" stroke-width="2"/>
+        <polygon id="ground" fill="#0C1445"/>
+      </svg>
+    </div>
+  </div>
+  <div class="control">
+    <div class="wrap">
+      <div class="slide">
+        <div>
+          <label for="level">Raise the water</label>
+          <input id="level" type="range" min="0" max="100" value="0" step="1">
+        </div>
+        <div class="read" id="read" aria-live="polite">Ground under water: 0%</div>
+      </div>
+      <p>Low ground floods first, so elevation alone is a strong flood predictor. In Nyando, elevation alone scored 0.939 per-event AUC on 27 sealed events (mappable frame), and every model had to beat it. This profile is an illustration, not survey data.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="work"><div class="wrap">
+  <h2 class="display">Work</h2>
+  <p class="sub">Each figure comes from the project’s own repository or stored results. Where a result didn’t hold, the entry says so.</p>
+  <div class="ledger" id="ledger"></div>
+</div></section>
+
+<section id="method"><div class="wrap">
+  <h2 class="display">How I work</h2>
+  <p class="sub">Four habits that show up in every project above.</p>
+  <div class="method">
+    <div><h3>Protocol before scoring</h3><p>Decision rules go into a written protocol before any model is scored. In Nyando V2, the sealed events were scored once.</p></div>
+    <div><h3>Report what didn’t hold</h3><p>My Nyando champion’s edge did not replicate on sealed events, a neural network trailed, and my own first version was retracted. All of it is on the record.</p></div>
+    <div><h3>Serve only what you verified</h3><p>The API checks the model’s SHA-256 before loading it, and production installs are hash-locked: 31 packages, 483 hashes.</p></div>
+    <div><h3>Build for the connection you have</h3><p>I build and ship from an Android phone over mobile data, so pipelines are lean, reproducible and tested in CI.</p></div>
+  </div>
+</div></section>
+
+<section id="path"><div class="wrap">
+  <h2 class="display">From physics to production ML</h2>
+  <p class="sub">Measurement discipline from geophysics, applied to machine learning.</p>
+  <dl class="path">
+    <dt>2007 to 2012</dt><dd>Taught Physics and Mathematics at secondary schools in Nyanza.</dd>
+    <dt>2011</dt><dd>Industrial Attaché, Geophysics and Reservoir Engineering at KenGen’s Olkaria geothermal project.</dd>
+    <dt>2012</dt><dd>B.Sc. Physics and Mathematics, Moi University. Research project on magnetotelluric and transient electromagnetic methods in geothermal exploration.</dd>
+    <dt>2013 to 2020</dt><dd>Financial services in Kenya: CIC Insurance, Madison Insurance, Jubilee Insurance (Best Unit Manager countrywide, October 2017) and Cytonn Investments.</dd>
+    <dt>2020 to 2023</dt><dd>Retrained in machine learning while doing community outreach and mentoring in Kisumu.</dd>
+    <dt>2023</dt><dd>Google Developers Launchpad: Certificate of Excellence, Machine Learning using Python.</dd>
+    <dt>2024 to now</dt><dd>Independent ML engineer and researcher.</dd>
+  </dl>
+</div></section>
+
+<section id="records"><div class="wrap">
+  <h2 class="display">Records you can cite</h2>
+  <p class="sub">Archived and checkable.</p>
+  <ul class="rec">
+    <li><div><b>Nyando Flood AI, release v2.0.0</b><br><span>Leakage-controlled evaluation, registered model and the full deviation register. Two earlier Nyando records carry a published erratum, so please cite this one.</span></div><a href="https://doi.org/10.5281/zenodo.23919053">10.5281/zenodo.23919053</a></li>
+    <li><div><b>Titanic Survival Prediction</b><br><span>A reproducible baseline with bootstrap confidence intervals.</span></div><a href="https://doi.org/10.5281/zenodo.20387973">10.5281/zenodo.20387973</a></li>
+    <li><div><b>ORCID</b></div><a href="https://orcid.org/0009-0001-8314-2682">0009-0001-8314-2682</a></li>
+  </ul>
+</div></section>
+
+<section id="tools"><div class="wrap">
+  <h2 class="display">Tools I ship with</h2>
+  <dl class="tools" style="margin-top:22px">
+    <div><dt>Machine learning</dt><dd>Python, scikit-learn, XGBoost, PyTorch, ONNX, pandas</dd></div>
+    <div><dt>MLOps</dt><dd>MLflow, Docker, GitHub Actions, hash-locked installs</dd></div>
+    <div><dt>Backend</dt><dd>FastAPI, Flask, Render</dd></div>
+    <div><dt>Frontend</dt><dd>React, Vite, Vercel</dd></div>
+    <div><dt>LLM integration</dt><dd>Gemini, Groq, LangGraph, MCP</dd></div>
+  </dl>
+</div></section>
+</main>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2 class="display">Let’s build something.</h2>
+  <p style="max-width:56ch;margin:0">I’m open to remote ML engineering roles and contract work. Email is the fastest way to reach me.</p>
+  <a class="mail" href="mailto:jmskoero@gmail.com">jmskoero@gmail.com</a>
+  <div class="row">
+    <button class="btn" id="copy" type="button">Copy email</button>
+  </div>
+  <div class="sm">
+    <a href="https://github.com/jameskoero">GitHub</a>
+    <a href="https://linkedin.com/in/jameskoero">LinkedIn</a>
+    <a href="https://orcid.org/0009-0001-8314-2682">ORCID</a>
+  </div>
+</div></section>
+<footer><div class="wrap">© <span id="yr">2026</span> James Koero. Kisumu, Kenya.</div></footer>
+
+<script>
+/* ground profile: x in 0..1000, y in svg units (larger y = lower ground) */
+var P=[[0,150],[90,140],[170,122],[250,150],[330,222],[400,262],[470,276],[520,284],[560,279],[640,270],[700,250],[760,238],[820,196],[890,166],[950,142],[1000,128]];
+var RIDGE=[[0,110],[120,96],[260,118],[420,100],[600,126],[760,92],[900,104],[1000,88]];
+function groundY(x){for(var i=1;i<P.length;i++){if(x<=P[i][0]){var a=P[i-1],b=P[i],t=(x-a[0])/(b[0]-a[0]);return a[1]+t*(b[1]-a[1])}}return P[P.length-1][1]}
+function poly(pts){return pts.map(function(p){return p[0]+","+p[1]}).join(" ")}
+var ground=document.getElementById("ground"),ridge=document.getElementById("ridge"),water=document.getElementById("water"),wline=document.getElementById("wline");
+ground.setAttribute("points",poly(P.concat([[1000,330],[0,330]])));
+ridge.setAttribute("points",poly(RIDGE.concat([[1000,330],[0,330]])));
+var slider=document.getElementById("level"),read=document.getElementById("read");
+function setLevel(v){
+  var y=300-v*2.1;
+  water.setAttribute("y",y);water.setAttribute("height",330-y);
+  wline.setAttribute("y1",y);wline.setAttribute("y2",y);
+  var n=0,tot=0;for(var x=0;x<=1000;x+=4){tot++;if(groundY(x)>y)n++}
+  var pct=Math.round(n/tot*100);
+  var txt="Ground under water: "+pct+"%";
+  read.textContent=txt;slider.setAttribute("aria-valuetext",txt);
+}
+slider.addEventListener("input",function(){setLevel(+slider.value)});
+(function intro(){
+  var target=46,reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){slider.value=target;setLevel(target);return}
+  setLevel(0);var t0=null,dur=1800;
+  function step(ts){
+    if(t0===null)t0=ts;var k=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-k,3);
+    if(document.activeElement===slider){slider.value=slider.value;return}
+    var v=Math.round(target*e);slider.value=v;setLevel(v);
+    if(k<1)requestAnimationFrame(step)
+  }
+  requestAnimationFrame(step);
+})();
+
+/* work ledger */
+var projects=[
+{open:true,t:"Nyando Flood AI",one:"A flood-susceptibility system for Kenya’s Nyando basin, rebuilt after I retracted my own circular first version.",res:"+0.0384 AUC over elevation alone",
+ f:["A registered monotonic gradient-boosting model, exported to ONNX and served by a FastAPI service that checks the model’s SHA-256 before loading it.",
+    "Leave-one-event-out validation, with rules fixed in a protocol before scoring and 27 sealed flood events scored once.",
+    "Not everything held: on the sealed events the earlier champion’s edge over elevation alone was not shown, and a neural network was not promoted.",
+    "Dashboard on Vercel (Lighthouse mobile 99, 100, 100, 100); release v2.0.0 archived on Zenodo."],
+ w:"A published AUC means little unless the test was designed before the results existed. So the protocol came first, and every deviation is on record.",
+ l:[["Live dashboard","https://nyando-flood-ai.vercel.app/"],["GitHub","https://github.com/jameskoero/nyando-flood-ai"],["DOI","https://doi.org/10.5281/zenodo.23919053"]],forest:true},
+{t:"AfriSalaries",one:"A salary-band classifier trained on 1,526 real rows from 8 countries, deployed as an API with a web frontend.",res:"59.5% band accuracy",
+ f:["XGBoost band classifier.","API on Render, frontend on Vercel."],
+ w:"Two regression attempts failed (R² 0.34 and 0.38). I documented them as architectural decisions and moved to predicting bands.",
+ l:[["Live app","https://afrisalaries.vercel.app/"]]},
+{t:"ChurchOS",one:"A multi-tenant management platform for churches, built as a technology product.",res:"Phase 1 live",
+ f:["JWT authentication, five-role access control and a finance audit log.","M-Pesa and Flutterwave payment integrations.","Backend on Render, frontend on Vercel, Postgres on Neon.","A technical note is published on Zenodo."],
+ w:"",l:[["Live app","https://churchos-app.vercel.app/"]]},
+{t:"Loan Risk Assessment",one:"A loan default model that picks its decision threshold from the cost of a wrong call, not from accuracy.",res:"Test ROC-AUC 0.791",
+ f:["Gradient boosting with SMOTE: cross-validated ROC-AUC 0.916, test ROC-AUC 0.791, Gini 0.582. Both are reported side by side.","Threshold 0.22 chosen from a 5:1 false-negative to false-positive cost matrix (recall 0.833, precision 0.45).","Framed with IFRS 9 staging and EL = PD × LGD × EAD, behind a Flask API."],
+ w:"",l:[["GitHub","https://github.com/jameskoero/loan-risk-assessment"]]},
+{t:"SegmentIQ",one:"A live K-Means customer segmentation app.",res:"5 segments, live",
+ f:["Five segments from age, income and spending score, with CSV batch upload.","FastAPI backend on Render and a React frontend on Vercel; a retry hook handles the free-tier cold start."],
+ w:"",l:[["GitHub","https://github.com/jameskoero/kmeans-customer-segmentation"]]},
+{t:"Titanic Survival Prediction",one:"A small problem done with full rigour: stratified CV, bootstrap intervals and an archived record.",res:"Hold-out ROC-AUC 0.8661",
+ f:["Hold-out accuracy 81.01%, ROC-AUC 0.8661, F1 0.7463, with bootstrap 95% intervals.","5-fold CV logistic regression: 0.7767 accuracy, 0.8299 ROC-AUC.","Group-aware age imputation inside a Pipeline with a ColumnTransformer."],
+ w:"",l:[["GitHub","https://github.com/jameskoero/titanic-survival-prediction"],["DOI","https://doi.org/10.5281/zenodo.20387973"]]}
+];
+function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
+/* interval plot, per-event AUC difference vs elevation only */
+var FMIN=-0.03,FMAX=0.07;
+function pos(v){return((v-FMIN)/(FMAX-FMIN)*100).toFixed(2)+"%"}
+function forest(){
+  var f=el("div","forest");f.appendChild(el("h3",null,"Does the model beat elevation alone?"));
+  var rows=[
+   {t:"Registered model, 50 events",est:0.0384,lo:0.0193,hi:0.0611,off:false,txt:"+0.0384 (0.0193 to 0.0611): clear of zero"},
+   {t:"Earlier champion, 27 sealed events",est:0.0117,lo:-0.0107,hi:0.0381,off:true,txt:"+0.0117 (−0.0107 to 0.0381): not shown"}];
+  rows.forEach(function(r){
+    var d=el("div","fr"+(r.off?" off":""));d.appendChild(el("p","t",r.t));
+    var tr=el("div","track");
+    var z=el("div","zero");z.style.left=pos(0);tr.appendChild(z);
+    var b=el("div","bar2");b.style.left=pos(r.lo);b.style.width=((r.hi-r.lo)/(FMAX-FMIN)*100).toFixed(2)+"%";tr.appendChild(b);
+    var p=el("div","pt");p.style.left=pos(r.est);tr.appendChild(p);
+    d.appendChild(tr);d.appendChild(el("p","v",r.txt));f.appendChild(d)});
+  var ax=el("div","axis");[-0.02,0,0.02,0.04,0.06].forEach(function(v){var s=el("span",null,(v>0?"+":"")+v.toFixed(2).replace("-","−"));s.style.left=pos(v);ax.appendChild(s)});
+  f.appendChild(ax);
+  f.appendChild(el("p","fnote","Per-event AUC difference with 97.5% intervals. The dashed line is no difference."));
+  return f;
+}
+var ledger=document.getElementById("ledger");
+projects.forEach(function(p){
+  var d=el("details","job");if(p.open)d.setAttribute("open","");
+  var s=el("summary");
+  s.appendChild(el("span","name",p.t));s.appendChild(el("span","one",p.one));s.appendChild(el("span","res",p.res));s.appendChild(el("span","tg"));
+  d.appendChild(s);
+  var b=el("div","body"),left=el("div"),right=el("div");
+  var ul=el("ul");p.f.forEach(function(x){ul.appendChild(el("li",null,x))});left.appendChild(ul);
+  if(p.w)right.appendChild(el("p","why",p.w));
+  var ln=el("div","links");p.l.forEach(function(a){var x=el("a",null,a[0]);x.href=a[1];x.rel="noopener";ln.appendChild(x)});
+  right.appendChild(ln);
+  if(p.forest)left.appendChild(forest());
+  b.appendChild(left);b.appendChild(right);d.appendChild(b);ledger.appendChild(d);
+});
+
+/* theme, copy, year */
+(function(){
+  var root=document.documentElement,btn=document.getElementById("theme");
+  try{var s=localStorage.getItem("theme");if(s)root.setAttribute("data-theme",s)}catch(e){}
+  btn.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme");
+    if(!cur)cur=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+    var next=cur==="dark"?"light":"dark";root.setAttribute("data-theme",next);
+    try{localStorage.setItem("theme",next)}catch(e){}
+  });
+})();
+document.getElementById("copy").addEventListener("click",function(){
+  var b=this,t="jmskoero@gmail.com";
+  function done(){var o=b.textContent;b.textContent="Copied";setTimeout(function(){b.textContent=o},1600)}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(done,function(){window.location.href="mailto:"+t})}
+  else{window.location.href="mailto:"+t}
+});
+document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
