@@ -38,6 +38,19 @@ AUC 0.9717, F1 0.9022, cross-validation 0.9727, 2,308 rows. Retracted with a Zen
 | ChurchOS | JWT, 5-role access control, finance audit log, M-Pesa and Flutterwave, Phase 1 live | README | README |
 | Kenya at Gold | 39 Olympic golds, four-dimension governance framework, code MIT, data CC-BY 4.0 | README | README |
 
+## Added 15 Nov 2026
+
+| Claim | Source | Status |
+|---|---|---|
+| SegmentIQ live app at kmeans-customer-segmentation.vercel.app | URL supplied by the owner; page title "SegmentIQ - Customer Segmentation" read on 15 Nov 2026 | Verified that the page loads, interface not exercised |
+| Roles, employers, titles and dates on /experience/ | Owner's own account of his career | Owner stated, no documents checked here |
+| Best Unit Manager countrywide, October 2017 | Owner's own account | Owner stated |
+| Education, certifications and the B.Sc. research project title | Owner's own account | Owner stated |
+| Nyando: selected neural network violated the monotonic constraints and was not promoted | Project notes, README | README |
+| Nyando: early-warning (temporal) skill not demonstrated; 26 further events held sealed | Project notes | Project notes |
+| Skill levels (Proficient, Working knowledge, Currently developing) | Proposed from project evidence | Owner may adjust |
+| Role line "Machine Learning Engineer" | Default adopted 15 Nov 2026 | Owner may change |
+
 ## Status statements
 
 Sokoni: backend scaffolded, agent logic not built. Retrieval-augmented generation and fine-tuning: learning, nothing shipped.
