@@ -1,0 +1,67 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nyando Flood AI | Case study | James Koero</title>
+<meta name="description" content="Case study: flood-susceptibility ranking for five wards of the Nyando Basin, Kenya. Pre-written protocol, sealed-event evaluation, stated limits and a public correction.">
+<link rel="canonical" href="https://jameskoero.github.io/work/nyando-flood-ai/"><meta name="theme-color" content="#2339F5">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+<style>
+:root{--cobalt:#2339F5;--bg:#F2F4FA;--ink:#0C1445;--muted:#4B5478;--line:#D3D9EA;--panel:#fff;--link:#2339F5;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#080D2B;--ink:#EDF0FF;--muted:#A5AEDA;--line:#222C66;--panel:#0E1540;--link:#9BA8FF;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Instrument Sans",system-ui,sans-serif}
+a{color:var(--link)}header{background:var(--cobalt);color:#fff;padding:22px 0 30px}.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header a{color:#fff;font-size:14px}h1{font:400 clamp(28px,6vw,40px)/1.1 "Special Gothic Expanded One","Instrument Sans",system-ui,sans-serif;margin:18px 0 8px}
+.sub{margin:0;color:#E6EAFF;font-size:17px}main{padding:6px 0 56px}
+h2{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:32px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+p{margin:8px 0}ul{margin:6px 0;padding-left:20px}li{margin:4px 0}
+table{width:100%;border-collapse:collapse;margin:10px 0;background:var(--panel);font-size:15px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600;font-size:13px}
+.note{color:var(--muted);font-size:14px}
+</style></head><body>
+<header><div class="wrap"><a href="/">&larr; jameskoero.github.io</a>
+<h1>Nyando Flood AI</h1><p class="sub">Flood-susceptibility ranking for five wards of the Nyando Basin, Kenya</p></div></header>
+<main class="wrap">
+<h2>In one paragraph</h2>
+<p>I built a model that ranks locations in five Nyando Basin wards by flood susceptibility, and I tested it against a protocol written before any sealed event was scored. On 27 sealed events it reached a mean per-event AUC of 0.971 (mappable frame) against 0.939 for a model that uses elevation alone. The same protocol shows where the model does not help, and I publish that too.</p>
+
+<h2>Problem</h2>
+<p>Flood-prone areas around the Nyando Basin need a way to rank where water is most likely to reach. The output is a ranking score, not a probability of flooding.</p>
+
+<h2>Data</h2>
+<ul><li>4,420 sampled rows with flood labels derived from Sentinel-1 radar scenes across 35 scene dates.</li>
+<li>Five wards. Features include terrain, rainfall, soil and land cover.</li></ul>
+
+<h2>Method</h2>
+<ul><li>Monotonic-constrained gradient boosting (HistGradientBoosting), so that known physical directions are respected.</li>
+<li>Exported to ONNX with a custom exporter; served through FastAPI with a React dashboard.</li>
+<li>Baselines kept in every comparison: an elevation-only model, and a registered logistic model (the champion).</li></ul>
+
+<h2>Validation</h2>
+<ul><li>Leave-one-event-out evaluation: mean per-event AUC 0.943 on 23 events.</li>
+<li>A sealed set of 27 events (D20), scored once, under rules written in advance: a challenger replaces the champion only if the lower end of its interval against the champion is above zero and its mean is higher.</li>
+<li>Training rows at locations that appear in the sealed events are removed before fitting.</li></ul>
+
+<h2>Results on the 27 sealed events</h2>
+<table><tr><th>Mean per-event AUC</th><th>Mappable frame</th><th>Full frame</th></tr>
+<tr><td>Monotonic gradient boosting</td><td>0.971</td><td>0.965</td></tr>
+<tr><td>Registered logistic champion</td><td>0.950</td><td>0.948</td></tr>
+<tr><td>Elevation only</td><td>0.939</td><td>0.928</td></tr></table>
+<p class="note">The mappable frame is the protocol's primary analysis. The full frame is shown for completeness.</p>
+<p>Against the champion on the full frame, the boosted model gains 0.0164 AUC (interval 0.0052 to 0.0273) and wins on 19 of 27 events.</p>
+
+<h2>What the results do not show</h2>
+<ul><li>The champion's gain over elevation alone is not established: the interval on the full frame is -0.0005 to +0.0448, and on the mappable frame it also includes zero.</li>
+<li>No advantage was shown under a 1 km spatial buffer or an out-of-time split.</li>
+<li>Scores rank locations. They are not calibrated probabilities.</li></ul>
+
+<h2>Engineering</h2>
+<ul><li>Hash-locked Docker installs (31 packages, 483 hashes), CI, CodeQL and MLflow tracking.</li>
+<li>Release v2.0.0 archived on Zenodo, DOI <a href="https://doi.org/10.5281/zenodo.23919053">10.5281/zenodo.23919053</a>.</li></ul>
+
+<h2>Correction history</h2>
+<p>An earlier version reported AUC 0.9717, F1 0.9022 and cross-validation 0.9727 on 2,308 rows. A leakage audit showed those figures were inflated. I retracted them, published an erratum on Zenodo, and rebuilt the project with the protocol above.</p>
+
+<h2>Links</h2>
+<ul><li><a href="https://github.com/jameskoero/nyando-flood-ai">Source repository</a></li>
+<li><a href="https://doi.org/10.5281/zenodo.23919053">Zenodo archive (v2.0.0)</a></li>
+<li><a href="/resume/">CV</a> | <a href="mailto:jmskoero@gmail.com">Email James</a></li></ul>
+</main></body></html>
