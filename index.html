@@ -301,7 +301,7 @@ slider.addEventListener("input",function(){setLevel(+slider.value)});
 
 /* work ledger */
 var projects=[
-{open:true,t:"Nyando Flood AI",one:"A flood-susceptibility system for Kenya’s Nyando basin, rebuilt after I retracted my own circular first version.",res:"+0.0384 AUC over elevation alone",
+{open:true,t:"Nyando Flood AI",one:"A flood-susceptibility system for Kenya’s Nyando basin, rebuilt after I retracted my own circular first version.",res:"+0.0384 AUC over elevation alone (pooled mappable events)",
  f:["A registered monotonic gradient-boosting model, exported to ONNX and served by a FastAPI service that checks the model’s SHA-256 before loading it.",
     "Leave-one-event-out validation, with rules fixed in a protocol before scoring and 27 sealed flood events scored once.",
     "Not everything held: on the sealed events the earlier champion’s edge over elevation alone was not shown, and a neural network was not promoted.",
