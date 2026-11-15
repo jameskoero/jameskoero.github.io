@@ -154,7 +154,7 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tg::before,.tg::after{transition:none}}
 @media print{.control,.theme,body::before{display:none}.hero,.contact{background:#fff;color:#000}.hero .lead,.contact a,.mail{color:#000}}
-.role{margin:24px 0 12px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--water)}</style>
+.role{margin:24px 0 12px;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--water)}.ev{padding-top:64px;padding-bottom:8px}.ev h2{font-size:clamp(22px,4vw,30px);margin:0 0 14px}.ev h3{font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin:26px 0 8px;opacity:.75}.ev p,.ev li{margin:6px 0}.ev ul{margin:6px 0;padding-left:20px}.ev .grid{display:grid;gap:12px;padding:0;list-style:none}.ev .grid li{border:1px solid rgba(127,127,127,.35);border-radius:12px;padding:14px 16px;margin:0}.ev a{color:inherit;font-weight:600}.ev .n{opacity:.75;font-size:14px;font-weight:400}</style>
 </head>
 <body>
 
@@ -163,7 +163,7 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
     <div class="bar">
       <a class="me" href="#top">James Koero</a>
       <nav aria-label="Sections">
-        <a href="#work">Work</a><a class="hide-s" href="#method">Method</a><a class="hide-s" href="#path">Path</a><a href="#contact">Contact</a>
+        <a href="#work">Work</a><a class="hide-s" href="#method">Method</a><a class="hide-s" href="#path">Path</a><a class="hide-s" href="/work/">Case studies</a><a class="hide-s" href="/resume/">CV</a><a href="#contact">Contact</a>
         <button class="theme" id="theme" type="button" aria-label="Switch between light and dark theme">Theme</button>
       </nav>
     </div>
@@ -171,7 +171,7 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
     <p class="lead">I’m an ML engineer in Kisumu, Kenya. I build flood-risk, salary and credit models end to end, test them against a protocol I write first, and publish where they fall short.</p>
     <div class="row">
       <a class="btn solid" href="#work">See the work</a>
-      <a class="btn" href="mailto:jmskoero@gmail.com">Email James</a><a class="btn" href="/resume/">Download CV</a>
+      <a class="btn" href="mailto:jmskoero@gmail.com">Email James</a><a class="btn" href="/resume/">Download CV</a><a class="btn" href="https://github.com/jameskoero">GitHub</a>
       <span class="status"><i></i>Open to remote ML engineering roles</span>
     </div>
     <div class="field">
@@ -251,6 +251,28 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
 </div></section>
 </main>
 
+<section class="wrap ev" id="evidence">
+<h2>Case studies</h2>
+<ul class="grid">
+<li><a href="/work/nyando-flood-ai/">Nyando Flood AI</a><br><span class="n">Flood-susceptibility ranking, sealed-event evaluation, public correction. Mean per-event AUC 0.971 against 0.939 for elevation alone (27 sealed events, mappable frame).</span></li>
+<li><a href="/work/afrisalaries/">AfriSalaries</a><br><span class="n">Salary-band classifier from job descriptions across 8 African markets. 59.5% band accuracy on 1,526 real records.</span></li>
+<li><a href="/work/segmentiq/">SegmentIQ</a><br><span class="n">K-Means customer segmentation with CSV batch upload (FastAPI, React).</span></li>
+<li><a href="/work/churchos/">ChurchOS</a><br><span class="n">Multi-tenant church management SaaS. Phase 1 live.</span></li>
+</ul>
+<p><a href="/work/">All case studies, archive and work in development</a></p>
+<h3>Skills, by level of evidence</h3>
+<ul>
+<li><strong>Proficient</strong> (used in shipped, public projects): Python, pandas, NumPy, scikit-learn, XGBoost and gradient boosting, model validation, ONNX export, FastAPI, Docker, GitHub Actions, MLflow, pytest.</li>
+<li><strong>Working knowledge</strong>: PyTorch, SHAP, React, Flask, PostgreSQL, Google Earth Engine, Gemini and Groq APIs, output guardrails, LangGraph, MCP.</li>
+<li><strong>Currently developing</strong>: retrieval-augmented generation, model fine-tuning.</li>
+</ul>
+<h3>Currently</h3>
+<ul>
+<li>Building Sokoni, a WhatsApp AI sales agent for Kenyan SMEs. The backend is scaffolded and the agent logic is not built yet.</li>
+<li>Learning retrieval-augmented generation and model fine-tuning. Nothing shipped yet.</li>
+</ul>
+<p><a href="/resume/">CV: Machine Learning, MLOps and AI/LLM versions</a></p>
+</section>
 <section class="contact" id="contact"><div class="wrap">
   <h2 class="display">Let’s build something.</h2>
   <p style="max-width:56ch;margin:0">I’m open to remote ML engineering roles and contract work. Email is the fastest way to reach me.</p>
