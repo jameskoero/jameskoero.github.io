@@ -71,3 +71,4 @@ If a number is not in this table, it does not go on the site, the CV or a profil
 | Next steps for AfriSalaries and SegmentIQ | drafted by Claude, per-band confusion matrix and baseline; cluster-quality measure | draft | Awaiting author approval | 16 Nov 2026 |
 | Next steps for Nyando Flood AI and ChurchOS | temporal-skill test, 26 sealed events, legacy endpoint retirement; billing, SMS, offline attendance | project record and README | Recorded | 16 Nov 2026 |
 | Archive status | Loan Default Risk and Titanic Survival: completed. Kenya at Gold: no label yet | author | Kenya at Gold pending | 16 Nov 2026 |
+| Archive projects (Pack 14) | Loan: deployed, CV ROC-AUC 0.916 (README). Titanic: hold-out ROC-AUC 0.8661, live demo (README). Kenya at Gold: in progress (README status list), live dashboard not verified, stack not stated | project READMEs | README | 16 Nov 2026 |
