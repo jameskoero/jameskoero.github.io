@@ -1,7 +1,7 @@
 import os, sys, re, urllib.request, urllib.error
 cases = ("nyando-flood-ai", "afrisalaries", "segmentiq", "churchos")
 pages = ["index.html", "resume/index.html", "404.html", "work/index.html", "about/index.html", "experience/index.html", "research/index.html"] + ["work/%s/index.html" % s for s in cases]
-forbidden = ["jameskoero.dev", "lorem ipsum", "ministry", "migosi", "bishop"]
+forbidden = ["jameskoero.dev", "lorem ipsum", "ministry", "migosi", "bishop", "an machine learning"]
 bad = 0
 txt = {}
 for p in pages:
