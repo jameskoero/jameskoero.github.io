@@ -45,7 +45,7 @@ if "--links" in sys.argv:
         try: c = urllib.request.urlopen(urllib.request.Request(u, method="HEAD", headers={"User-Agent": "Mozilla/5.0"}), timeout=15).status
         except urllib.error.HTTPError as e: c = e.code
         except Exception as e: c = str(e)[:40]
-        if "doi.org" in u and c == 403: continue
+        if ("doi.org" in u and c == 403) or ("linkedin.com" in u and c in (403, 405, 999)): continue
         if c not in (200, 301, 302): print("LINK?", c, u)
 print("PASS" if not bad else "FAIL")
 sys.exit(1 if bad else 0)
