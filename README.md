@@ -15,6 +15,9 @@ Personal portfolio of James Koero, an independent ML engineer in Kisumu, Kenya. 
 | Case studies | `/work/nyando-flood-ai/`, `/work/afrisalaries/`, `/work/segmentiq/`, `/work/churchos/` |
 | CV (HTML) | `/resume/` |
 | Experience, Research, Skills, About, Contact | `/experience/`, `/research/`, `/skills/`, `/about/`, `/contact/` |
+| Research reports | `/research/model-evaluation/`, `/research/onnx-validation/`, `/research/physics-constrained-ml/` |
+| Writing | `/writing/`, `/writing/why-i-retracted-my-flood-model/` |
+| Certifications | `/certifications/` |
 | Not-found page | `404.html` |
 
 CV downloads: `James_Koero_CV.pdf` (Machine Learning), `James_Koero_CV_MLOps.pdf`, `James_Koero_CV_LLM.pdf`.
