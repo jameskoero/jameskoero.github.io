@@ -22,6 +22,8 @@ for p in own:
     for need in ('<title>', 'rel="canonical"', 'name="description"', '<main'):
         if need not in t: print("NO", need, "in", p); bad += 1
     if t.count("<h1>") != 1: print("h1 count", t.count("<h1>"), "in", p); bad += 1
+for p, t in txt.items():
+    if "gc.zgo.at/count.js" not in t: print("NO analytics script in", p); bad += 1
 # internal links must exist
 def exists(path):
     path = path.split("#")[0].split("?")[0]
