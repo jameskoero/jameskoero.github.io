@@ -39,6 +39,7 @@ Also on the site: ChurchOS (multi-tenant church-management SaaS, live at version
 - Static HTML pages with inline CSS. No framework and no build step. The homepage project list is plain HTML, so it reads without JavaScript; the script only adds the Nyando interval plot, the theme toggle and the copy-email button.
 - `scripts/check.py` checks banned wording, internal links and structure on every push (`.github/workflows/site-check.yml`), and external links weekly.
 - `CLAIMS.md` records the source and check date of every figure on the site.
+- Analytics: GoatCounter (code `jameskoero`), cookie-free. Every page loads it; CV downloads, GitHub, LinkedIn and email links are counted as click events (`data-goatcounter-click`). The contact page says so.
 - Type: Special Gothic Expanded One and Instrument Sans. Palette: cobalt `#2339F5`, navy `#0C1445`, signal yellow `#FFD84A`, water `#9ED8FF`.
 - `share-card.png` is the 1200 x 630 social preview image.
 - Hosted on GitHub Pages from the `main` branch. Pushing a change republishes the site within a few minutes.
