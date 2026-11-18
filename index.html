@@ -201,7 +201,14 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
 <section id="work"><div class="wrap">
   <h2 class="display">Work</h2>
   <p class="sub">Each figure comes from the project’s own repository or stored results. Where a result didn’t hold, the entry says so.</p>
-  <div class="ledger" id="ledger"></div>
+  <div class="ledger" id="ledger">
+<details class="job" open><summary><span class="name">Nyando Flood AI</span><span class="one">A flood-susceptibility system for Kenya’s Nyando basin, rebuilt after I retracted my own circular first version.</span><span class="res">+0.0384 AUC over elevation alone (pooled mappable events)</span><span class="tg"></span></summary><div class="body"><div id="nyando-left"><ul><li>A registered monotonic gradient-boosting model, exported to ONNX and served by a FastAPI service that checks the model’s SHA-256 before loading it.</li><li>Leave-one-event-out validation, with rules fixed in a protocol before scoring and 27 sealed flood events scored once.</li><li>Not everything held: on the sealed events the earlier champion’s edge over elevation alone was not shown, and a neural network was not promoted.</li><li>Dashboard on Vercel (Lighthouse mobile 99, 100, 100, 100); release v2.0.0 archived on Zenodo.</li></ul></div><div><p class="why">A published AUC means little unless the test was designed before the results existed. So the protocol came first, and every deviation is on record.</p><div class="links"><a href="https://nyando-flood-ai.vercel.app/" rel="noopener">Live dashboard</a><a href="/work/nyando-flood-ai/" rel="noopener">Case study</a><a href="https://github.com/jameskoero/nyando-flood-ai" rel="noopener">GitHub</a><a href="https://doi.org/10.5281/zenodo.23919053" rel="noopener">DOI</a></div></div></div></details>
+<details class="job"><summary><span class="name">AfriSalaries</span><span class="one">A salary-band classifier trained on 1,526 real rows from 8 countries, deployed as an API with a web frontend.</span><span class="res">59.5% band accuracy</span><span class="tg"></span></summary><div class="body"><div><ul><li>XGBoost band classifier.</li><li>API on Render, frontend on Vercel.</li></ul></div><div><p class="why">Two regression attempts failed (R² 0.34 and 0.38). I documented them as architectural decisions and moved to predicting bands.</p><div class="links"><a href="https://afrisalaries.vercel.app/" rel="noopener">Live app</a><a href="/work/afrisalaries/" rel="noopener">Case study</a><a href="https://github.com/jameskoero/afrisalaries" rel="noopener">GitHub</a></div></div></div></details>
+<details class="job"><summary><span class="name">ChurchOS</span><span class="one">A multi-tenant management platform for churches: many churches, each fully separate, on one system.</span><span class="res">Live, version 3.4.0</span><span class="tg"></span></summary><div class="body"><div><ul><li>JWT sign-in, five roles (admin, pastor, secretary, treasurer, viewer), each church’s data kept separate, and a finance audit log.</li><li>M-Pesa giving, billing and invoices, offline attendance, SMS with consent, denomination and region structure, and encrypted nightly backups.</li><li>192 automated tests in 26 files, run by GitHub Actions on every pull request; 21 pull requests merged.</li><li>Backend on Render, frontend on Vercel, Postgres on Neon.</li></ul></div><div><div class="links"><a href="https://churchos-app.vercel.app/" rel="noopener">Live app</a><a href="/work/churchos/" rel="noopener">Case study</a><a href="https://github.com/jameskoero/ChurchOS" rel="noopener">GitHub</a></div></div></div></details>
+<details class="job"><summary><span class="name">Loan Risk Assessment</span><span class="one">A loan default model that picks its decision threshold from the cost of a wrong call, not from accuracy.</span><span class="res">Test ROC-AUC 0.791</span><span class="tg"></span></summary><div class="body"><div><ul><li>Gradient boosting with SMOTE: cross-validated ROC-AUC 0.916, test ROC-AUC 0.791, Gini 0.582. Both are reported side by side.</li><li>Threshold 0.22 chosen from a 5:1 false-negative to false-positive cost matrix (recall 0.833, precision 0.45).</li><li>Framed with IFRS 9 staging and EL = PD × LGD × EAD, behind a Flask API.</li></ul></div><div><div class="links"><a href="https://github.com/jameskoero/loan-risk-assessment" rel="noopener">GitHub</a></div></div></div></details>
+<details class="job"><summary><span class="name">SegmentIQ</span><span class="one">A live K-Means customer segmentation app.</span><span class="res">5 segments, live</span><span class="tg"></span></summary><div class="body"><div><ul><li>Five segments from age, income and spending score, with CSV batch upload.</li><li>FastAPI backend on Render and a React frontend on Vercel; a retry hook handles the free-tier cold start.</li></ul></div><div><div class="links"><a href="https://kmeans-customer-segmentation.vercel.app/" rel="noopener">Live app</a><a href="/work/segmentiq/" rel="noopener">Case study</a><a href="https://github.com/jameskoero/kmeans-customer-segmentation" rel="noopener">GitHub</a></div></div></div></details>
+<details class="job"><summary><span class="name">Titanic Survival Prediction</span><span class="one">A small problem done with full rigour: stratified CV, bootstrap intervals and an archived record.</span><span class="res">Hold-out ROC-AUC 0.8661</span><span class="tg"></span></summary><div class="body"><div><ul><li>Hold-out accuracy 81.01%, ROC-AUC 0.8661, F1 0.7463, with bootstrap 95% intervals.</li><li>5-fold CV logistic regression: 0.7767 accuracy, 0.8299 ROC-AUC.</li><li>Group-aware age imputation inside a Pipeline with a ColumnTransformer.</li></ul></div><div><div class="links"><a href="https://github.com/jameskoero/titanic-survival-prediction" rel="noopener">GitHub</a><a href="https://doi.org/10.5281/zenodo.20387973" rel="noopener">DOI</a></div></div></div></details>
+  </div>
 </div></section>
 
 <section id="method"><div class="wrap">
@@ -258,7 +265,7 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
 <li><strong>Applied ML</strong><br><span class="n">Shipped: <a href="/work/nyando-flood-ai/">Nyando Flood AI</a>, <a href="/work/afrisalaries/">AfriSalaries</a>, <a href="/work/segmentiq/">SegmentIQ</a>. Sealed-event evaluation, baselines, public correction.</span></li>
 <li><strong>Generative AI</strong><br><span class="n">Shipped: an LLM advisory layer with guard rules and a template fallback, in <a href="/work/nyando-flood-ai/#llm-advisory-layer">Nyando Flood AI</a>. In development: retrieval-augmented generation and fine-tuning, nothing shipped yet.</span></li>
 <li><strong>MLOps and deployment</strong><br><span class="n">Shipped: ONNX export with parity check, SHA-256 verified model loading, hash-locked Docker, GitHub Actions. See <a href="/work/nyando-flood-ai/#production-engineering">production engineering</a>.</span></li>
-<li><strong>AI systems engineering</strong><br><span class="n">Shipped: <a href="/work/churchos/">ChurchOS</a> Phase 1, multi-tenant with role-based access and an audit log. Working knowledge: LangGraph agents, nothing shipped.</span></li>
+<li><strong>AI systems engineering</strong><br><span class="n">Shipped: <a href="/work/churchos/">ChurchOS</a> version 3.4.0, multi-tenant with role-based access and an audit log. Working knowledge: LangGraph agents, nothing shipped.</span></li>
 </ul></section>
 <section class="wrap ev" id="evidence">
 <h2>Case studies</h2>
@@ -266,7 +273,7 @@ footer{background:var(--navy);color:#C9D1FF;padding:18px 0;font-size:14px}
 <li><a href="/work/nyando-flood-ai/">Nyando Flood AI</a><br><span class="n">Flood-susceptibility ranking, sealed-event evaluation, public correction. Mean per-event AUC 0.971 against 0.939 for elevation alone (27 sealed events, mappable frame).</span></li>
 <li><a href="/work/afrisalaries/">AfriSalaries</a><br><span class="n">Salary-band classifier from job descriptions across 8 African markets. 59.5% band accuracy on 1,526 real records.</span></li>
 <li><a href="/work/segmentiq/">SegmentIQ</a><br><span class="n">K-Means customer segmentation with CSV batch upload (FastAPI, React). <a href="https://kmeans-customer-segmentation.vercel.app/">Live app</a></span></li>
-<li><a href="/work/churchos/">ChurchOS</a><br><span class="n">Multi-tenant church management SaaS. Phase 1 live.</span></li>
+<li><a href="/work/churchos/">ChurchOS</a><br><span class="n">Multi-tenant church management SaaS. Live, version 3.4.0.</span></li>
 </ul>
 <p><a href="/work/">All case studies, archive and work in development</a></p>
 <p><a href="/experience/">Experience</a> | <a href="/research/">Research</a> | <a href="/about/">About</a></p>
@@ -332,31 +339,6 @@ slider.addEventListener("input",function(){setLevel(+slider.value)});
 })();
 
 /* work ledger */
-var projects=[
-{open:true,t:"Nyando Flood AI",one:"A flood-susceptibility system for Kenya’s Nyando basin, rebuilt after I retracted my own circular first version.",res:"+0.0384 AUC over elevation alone (pooled mappable events)",
- f:["A registered monotonic gradient-boosting model, exported to ONNX and served by a FastAPI service that checks the model’s SHA-256 before loading it.",
-    "Leave-one-event-out validation, with rules fixed in a protocol before scoring and 27 sealed flood events scored once.",
-    "Not everything held: on the sealed events the earlier champion’s edge over elevation alone was not shown, and a neural network was not promoted.",
-    "Dashboard on Vercel (Lighthouse mobile 99, 100, 100, 100); release v2.0.0 archived on Zenodo."],
- w:"A published AUC means little unless the test was designed before the results existed. So the protocol came first, and every deviation is on record.",
- l:[["Live dashboard","https://nyando-flood-ai.vercel.app/"],["Case study","/work/nyando-flood-ai/"],["GitHub","https://github.com/jameskoero/nyando-flood-ai"],["DOI","https://doi.org/10.5281/zenodo.23919053"]],forest:true},
-{t:"AfriSalaries",one:"A salary-band classifier trained on 1,526 real rows from 8 countries, deployed as an API with a web frontend.",res:"59.5% band accuracy",
- f:["XGBoost band classifier.","API on Render, frontend on Vercel."],
- w:"Two regression attempts failed (R² 0.34 and 0.38). I documented them as architectural decisions and moved to predicting bands.",
- l:[["Live app","https://afrisalaries.vercel.app/"],["Case study","/work/afrisalaries/"],["GitHub","https://github.com/jameskoero/afrisalaries"]]},
-{t:"ChurchOS",one:"A multi-tenant management platform for churches, built as a technology product.",res:"Phase 1 live",
- f:["JWT authentication, five-role access control and a finance audit log.","M-Pesa and Flutterwave payment integrations.","Backend on Render, frontend on Vercel, Postgres on Neon.","A technical note is published on Zenodo."],
- w:"",l:[["Live app","https://churchos-app.vercel.app/"],["Case study","/work/churchos/"],["GitHub","https://github.com/jameskoero/ChurchOS"]]},
-{t:"Loan Risk Assessment",one:"A loan default model that picks its decision threshold from the cost of a wrong call, not from accuracy.",res:"Test ROC-AUC 0.791",
- f:["Gradient boosting with SMOTE: cross-validated ROC-AUC 0.916, test ROC-AUC 0.791, Gini 0.582. Both are reported side by side.","Threshold 0.22 chosen from a 5:1 false-negative to false-positive cost matrix (recall 0.833, precision 0.45).","Framed with IFRS 9 staging and EL = PD × LGD × EAD, behind a Flask API."],
- w:"",l:[["GitHub","https://github.com/jameskoero/loan-risk-assessment"]]},
-{t:"SegmentIQ",one:"A live K-Means customer segmentation app.",res:"5 segments, live",
- f:["Five segments from age, income and spending score, with CSV batch upload.","FastAPI backend on Render and a React frontend on Vercel; a retry hook handles the free-tier cold start."],
- w:"",l:[["Live app","https://kmeans-customer-segmentation.vercel.app/"],["Case study","/work/segmentiq/"],["GitHub","https://github.com/jameskoero/kmeans-customer-segmentation"]]},
-{t:"Titanic Survival Prediction",one:"A small problem done with full rigour: stratified CV, bootstrap intervals and an archived record.",res:"Hold-out ROC-AUC 0.8661",
- f:["Hold-out accuracy 81.01%, ROC-AUC 0.8661, F1 0.7463, with bootstrap 95% intervals.","5-fold CV logistic regression: 0.7767 accuracy, 0.8299 ROC-AUC.","Group-aware age imputation inside a Pipeline with a ColumnTransformer."],
- w:"",l:[["GitHub","https://github.com/jameskoero/titanic-survival-prediction"],["DOI","https://doi.org/10.5281/zenodo.20387973"]]}
-];
 function el(tag,cls,html){var e=document.createElement(tag);if(cls)e.className=cls;if(html!=null)e.innerHTML=html;return e}
 /* interval plot, per-event AUC difference vs elevation only */
 var FMIN=-0.03,FMAX=0.07;
@@ -378,20 +360,8 @@ function forest(){
   f.appendChild(el("p","fnote","Per-event AUC difference with 97.5% intervals. The dashed line is no difference."));
   return f;
 }
-var ledger=document.getElementById("ledger");
-projects.forEach(function(p){
-  var d=el("details","job");if(p.open)d.setAttribute("open","");
-  var s=el("summary");
-  s.appendChild(el("span","name",p.t));s.appendChild(el("span","one",p.one));s.appendChild(el("span","res",p.res));s.appendChild(el("span","tg"));
-  d.appendChild(s);
-  var b=el("div","body"),left=el("div"),right=el("div");
-  var ul=el("ul");p.f.forEach(function(x){ul.appendChild(el("li",null,x))});left.appendChild(ul);
-  if(p.w)right.appendChild(el("p","why",p.w));
-  var ln=el("div","links");p.l.forEach(function(a){var x=el("a",null,a[0]);x.href=a[1];x.rel="noopener";ln.appendChild(x)});
-  right.appendChild(ln);
-  if(p.forest)left.appendChild(forest());
-  b.appendChild(left);b.appendChild(right);d.appendChild(b);ledger.appendChild(d);
-});
+var nyLeft=document.getElementById("nyando-left");
+if(nyLeft)nyLeft.appendChild(forest());
 
 /* theme, copy, year */
 (function(){
