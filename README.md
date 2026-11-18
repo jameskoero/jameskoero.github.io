@@ -8,9 +8,18 @@ Personal portfolio of James Koero, an independent ML engineer in Kisumu, Kenya. 
 
 ## What is on the site
 
-- **Work:** a ledger-style, expandable list of projects, including an interval plot of the Nyando results.
-- **How I work, Path, Records, Tools and Contact** sections.
-- A small interactive valley illustration with a water-level slider. It is an illustration, labelled as such, not survey data.
+| Page | Path |
+|---|---|
+| Home: work ledger with the Nyando interval plot, How I work, Path, Records, Tools, Contact | `/` |
+| Case studies index | `/work/` |
+| Case studies | `/work/nyando-flood-ai/`, `/work/afrisalaries/`, `/work/segmentiq/`, `/work/churchos/` |
+| CV (HTML) | `/resume/` |
+| Experience, Research, Skills, About, Contact | `/experience/`, `/research/`, `/skills/`, `/about/`, `/contact/` |
+| Not-found page | `404.html` |
+
+CV downloads: `James_Koero_CV.pdf` (Machine Learning), `James_Koero_CV_MLOps.pdf`, `James_Koero_CV_LLM.pdf`.
+
+The homepage valley illustration with a water-level slider is labelled as an illustration, not survey data.
 
 ## Selected work
 
@@ -20,11 +29,13 @@ Personal portfolio of James Koero, an independent ML engineer in Kisumu, Kenya. 
   [Code](https://github.com/jameskoero/loan-risk-assessment)
 - **AfriSalaries.** Salary-band model and API for 8 African markets, trained on 1,526 real records. 59.5% band accuracy; two regression designs were tried and rejected.
 
-Also on the site: ChurchOS (multi-tenant church-management SaaS), SegmentIQ (customer segmentation) and a Titanic baseline (hold-out ROC-AUC 0.8661). Every figure on the site comes from the linked repositories and records.
+Also on the site: ChurchOS (multi-tenant church-management SaaS, live at version 3.4.0), SegmentIQ (customer segmentation) and a Titanic baseline (hold-out ROC-AUC 0.8661). Every figure on the site comes from the linked repositories and records.
 
 ## How it is built
 
-- One static page, `index.html`, with inline CSS and JavaScript. No framework and no build step.
+- Static HTML pages with inline CSS. No framework and no build step. The homepage project list is plain HTML, so it reads without JavaScript; the script only adds the Nyando interval plot, the theme toggle and the copy-email button.
+- `scripts/check.py` checks banned wording, internal links and structure on every push (`.github/workflows/site-check.yml`), and external links weekly.
+- `CLAIMS.md` records the source and check date of every figure on the site.
 - Type: Special Gothic Expanded One and Instrument Sans. Palette: cobalt `#2339F5`, navy `#0C1445`, signal yellow `#FFD84A`, water `#9ED8FF`.
 - `share-card.png` is the 1200 x 630 social preview image.
 - Hosted on GitHub Pages from the `main` branch. Pushing a change republishes the site within a few minutes.

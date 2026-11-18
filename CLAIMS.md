@@ -35,7 +35,7 @@ AUC 0.9717, F1 0.9022, cross-validation 0.9727, 2,308 rows. Retracted with a Zen
 | Loan Default Risk | German Credit, test ROC-AUC 0.791, Gini 0.582, recall 0.833, threshold 0.22 from a 5:1 cost matrix | README | README | 15 Nov 2026 |
 | Titanic | hold-out ROC-AUC 0.8661, bootstrap 95% intervals, DOI 10.5281/zenodo.20387973 | README | README | 15 Nov 2026 |
 | SegmentIQ | K-Means, 5 segments, CSV batch upload, FastAPI and React | README | README | 15 Nov 2026 |
-| ChurchOS | JWT, 5-role access control, finance audit log, M-Pesa and Flutterwave, Phase 1 live | README | README | 15 Nov 2026 |
+| ChurchOS | JWT, 5-role access control (admin, pastor, secretary, treasurer, viewer), finance audit log, M-Pesa; version 3.4.0 live; billing, offline attendance, SMS with consent, regions, encrypted backups; 192 test functions in 26 files; 21 merged pull requests; own M-Pesa and SMS sign-in ship switched off. Flutterwave removed: only a key setting exists in backend/config.py, no routes | Repository at ea168c8: backend/app.py, backend/models.py, backend/routes/, backend/tests/; live /api/health | Verified | 18 Nov 2026 |
 | Kenya at Gold | 39 Olympic golds, four-dimension governance framework, code MIT, data CC-BY 4.0 | README | README | 15 Nov 2026 |
 
 ## Added 15 Nov 2026
