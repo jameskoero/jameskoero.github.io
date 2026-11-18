@@ -72,3 +72,19 @@ If a number is not in this table, it does not go on the site, the CV or a profil
 | Next steps for Nyando Flood AI and ChurchOS | temporal-skill test, 26 sealed events, legacy endpoint retirement; billing, SMS, offline attendance | project record and README | Recorded | 16 Nov 2026 |
 | Archive status | Loan Default Risk and Titanic Survival: completed. Kenya at Gold: no label yet | author | Kenya at Gold pending | 16 Nov 2026 |
 | Archive projects (Pack 14) | Loan: deployed, CV ROC-AUC 0.916 (README). Titanic: hold-out ROC-AUC 0.8661, live demo (README). Kenya at Gold: in progress (README status list), live dashboard not verified, stack not stated | project READMEs | README | 16 Nov 2026 |
+
+## Added 18 Nov 2026 (Part B pages)
+
+All figures read from github.com/jameskoero/nyando-flood-ai at commit 0c63e78.
+
+| Claim | Source | Status | Last checked |
+|---|---|---|---|
+| Physics-constrained MLP vs hgb:con, mappable: -0.0098 [-0.0204, -0.0005], 4 wins, 13 losses, 6 ties, 23 events; vs elevation +0.0358 [+0.0046, +0.0721]; means 0.943, 0.937, 0.933, 0.897 | docs/PHASE_D_RESULTS.json (stats.mappable, mean_micro.mappable) | Verified | 18 Nov 2026 |
+| MLP violations of 200 rows: rainfall 79, elevation 148, distance 80, slope 198; penalty-0 control 125, 136, 160, 197; hgb:con 0 | docs/PHASE_D_RESULTS.json (violations); docs/PHASE_D_PROTOCOL.md Section 11 | Verified | 18 Nov 2026 |
+| X3 set in Stage 0; r4 added after the violation check; 14 inputs, tanh, Adam, 100 epochs, seed 42, CPU | docs/PHASE_D_PROTOCOL.md lines 16-22, 47, 85-87 | Verified | 18 Nov 2026 |
+| ONNX parity 3.3e-16 Block A, 2.5e-16 training; AUC difference 0; zero violations; 100 trees, 1,013 nodes, 1,113 leaves; skl2onnx difference up to 0.981 | docs/REGISTRATION.json; docs/ROADMAP_DEVIATIONS.md row D42 | Verified | 18 Nov 2026 |
+| All Nyando intervals are 97.5% paired per-event bootstrap intervals (10,000 resamples); research and Nyando pages corrected from "95%" | docs/PROMOTION_PROTOCOL.md line 15; docs/PHASE_D_PROTOCOL.md line 28; docs/REGISTRATION.json | Corrected | 18 Nov 2026 |
+| Logistic champion vs elevation on 27 sealed events, mappable: +0.0117 [-0.0107, +0.0381], 11 wins, 16 losses | docs/D20_RESULTS.json | Verified | 18 Nov 2026 |
+| Phase L: land cover adds no within-class discrimination on Block A; observed clay adds discrimination | docs/PHASE_L_RESULTS.json (claims.d14, claims.d55) | Verified | 18 Nov 2026 |
+| Retraction: 0.9717 / 0.9022 / 0.9727; 2 flood rows of 2,308; SMOTE before split; erratum on both records 2026-11-03; bare 4-feature logistic 0.841 | nyando-flood-ai README.md lines 10, 72, 208 | Verified | 18 Nov 2026 |
+| Certificates: Google Developers Launchpad Certificate of Excellence (2023, Excellent); Programiz Python Basic | Existing Experience page and CV | Carried over, not re-verified | 18 Nov 2026 |

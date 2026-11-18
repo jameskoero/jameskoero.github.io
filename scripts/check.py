@@ -1,6 +1,6 @@
 import os, sys, re, urllib.request, urllib.error
 cases = ("nyando-flood-ai", "afrisalaries", "segmentiq", "churchos")
-pages = ["index.html", "resume/index.html", "404.html", "work/index.html", "about/index.html", "experience/index.html", "research/index.html", "skills/index.html", "contact/index.html"] + ["work/%s/index.html" % s for s in cases]
+pages = ["index.html", "resume/index.html", "404.html", "work/index.html", "about/index.html", "experience/index.html", "research/index.html", "skills/index.html", "contact/index.html"] + ["work/%s/index.html" % s for s in cases] + ["%sindex.html" % x for x in ("certifications/", "writing/", "writing/why-i-retracted-my-flood-model/", "research/physics-constrained-ml/", "research/onnx-validation/", "research/model-evaluation/")]
 forbidden = ["jameskoero.dev", "lorem ipsum", "ministry", "migosi", "bishop", "mwamburi", "an machine learning"]
 bad = 0
 txt = {}
